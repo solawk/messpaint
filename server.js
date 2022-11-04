@@ -38,7 +38,7 @@ function testStart()
 
 // Routing
 
-app.get("/", (req, res) =>
+app.get("/game", (req, res) =>
 {
     console.log("PREPARATION");
 
@@ -133,7 +133,7 @@ app.get("/api/joinRoom", (req, res) => // Just checks the existence of a room wi
 
 function wsSetup()
 {
-    wsserver = new ws.Server({ port: wsport, clientTracking: true, path: "/ws" });
+    wsserver = new ws.Server({ port: wsport, clientTracking: true });
     console.log("WSServer is up, port = " + wsport + "!");
 
     wsserver.on("connection", (wsuser) =>
