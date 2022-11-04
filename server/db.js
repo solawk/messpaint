@@ -84,18 +84,18 @@ async function loadSession(id)
         if (session._id === id) return session;
     }
 
-    console.log(id);
-    await sessionModel.findById(id, (err, session) =>
+    console.log("id: " + id);
+    try
     {
-        if (err)
-        {
-            console.log("Failed to get the session from Mongo: " + err);
-            return null;
-        }
+        const session = await sessionModel.findById(id);
 
         cache.push(session);
         return session;
-    });
+    }
+    catch (e)
+    {
+        console.log("load error: " + e);
+    }
 
     return null;
 }

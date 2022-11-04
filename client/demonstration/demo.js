@@ -5,6 +5,7 @@ async function getSessionData()
 {
     const params = new URLSearchParams(window.location.search);
     const sessionId = params.get("id");
+    el("demoId").innerHTML = sessionId;
 
     db = parseInt(params.get("db"));
     timer = parseInt(params.get("t"));
