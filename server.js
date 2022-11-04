@@ -11,7 +11,7 @@ const PROMPTS = require("./server/prompts");
 const port = process.env.PORT || 4000;
 const wsport = process.env.WSPORT || 5000;
 const ws = require("ws");
-const expressWs = require("express-ws")(app);
+//const expressWs = require("express-ws")(app);
 const sendFileOptions = { root: "." };
 
 // Adding directories for script routing
@@ -20,7 +20,7 @@ app.use("/js", express.static(__dirname + "/client"));
 let wsserver;
 
 // Launching
-const expressServer = app.listen(port, () =>
+app.listen(port, () =>
 {
     console.log("Server is up, port = " + port + "!");
     wsSetup();
@@ -133,7 +133,7 @@ app.get("/api/joinRoom", (req, res) => // Just checks the existence of a room wi
 
 function wsSetup()
 {
-    /*wsserver = new ws.Server({ port: wsport, clientTracking: true, path: "/ws" });
+    wsserver = new ws.Server({ port: wsport, clientTracking: true});
     console.log("WSServer is up, port = " + wsport + "!");
 
     wsserver.on("connection", (wsuser) =>
@@ -151,10 +151,10 @@ function wsSetup()
 
             wsRoomSend(room, "ROOMPLAYERSUPDATE", makeRoomPlayersData(room));
         });
-    });*/
+    });
 }
 
-app.ws('/', (wsuser, req) =>
+/*app.ws('/', (wsuser, req) =>
 {
     wsuser.on("message", (data) => { wsHandling(wsuser, data.toString()); })
 
@@ -169,7 +169,7 @@ app.ws('/', (wsuser, req) =>
 
         wsRoomSend(room, "ROOMPLAYERSUPDATE", makeRoomPlayersData(room));
     });
-});
+});*/
 
 function wsHandling(wsuser, msg)
 {
