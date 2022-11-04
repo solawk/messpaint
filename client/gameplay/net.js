@@ -5,7 +5,7 @@ ws.onopen = () =>
 };
 ws.onerror = (e) =>
 {
-    ws = new WebSocket("wss://lovely-hoodie-crow.cyclic.app:5000");
+    ws = new WebSocket("wss://messpaint.herokuapp.com:5000");
     ws.onopen = () =>
     {
         wsSuccess();
