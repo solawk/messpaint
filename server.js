@@ -366,6 +366,6 @@ function wsRoomSend(room, signature, msg)
 
 function wsSend(wsuser, signature, msg)
 {
-    console.log(wsuser + ": " + signature + "|" + msg);
+    console.log(signature + "|" + msg);
     wsuser.send(signature + "|" + msg);
 }

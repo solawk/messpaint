@@ -1,26 +1,6 @@
-let ws = new WebSocket("ws://localhost:4000");
+const isDev = window.location.href.includes("localhost");
+let ws = new WebSocket(isDev ? "ws://localhost:4000" : "wss://messpaint.herokuapp.com");
 ws.onopen = () =>
-{
-    wsSuccess();
-};
-ws.onerror = (e) =>
-{
-    console.log("local failed");
-    console.log(e);
-    ws = new WebSocket("wss://messpaint.herokuapp.com");
-    ws.onopen = () =>
-    {
-        wsSuccess();
-    };
-    ws.onerror = (e) =>
-    {
-        console.log("heroku failed");
-        console.log(e);
-        show(el("websocketFailed"));
-    }
-}
-
-function wsSuccess()
 {
     hide(el("websocketWaitingForConnection"));
     show(el("roomConnecting"));
@@ -32,6 +12,10 @@ function wsSuccess()
     el("roomCode").innerHTML = roomCode;
 
     ws.send("CONNECTTOROOM|" + roomCode + "|" + playerName);
+};
+ws.onerror = (e) =>
+{
+    console.log(e);
 }
 
 ws.onmessage = (event) =>
