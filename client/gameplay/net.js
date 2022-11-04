@@ -1,4 +1,4 @@
-let ws = new WebSocket("ws://localhost:5000/ws");
+let ws = new WebSocket("ws://localhost:4000");
 ws.onopen = () =>
 {
     wsSuccess();
@@ -7,7 +7,7 @@ ws.onerror = (e) =>
 {
     console.log("local failed");
     console.log(e);
-    ws = new WebSocket("wss://messpaint.herokuapp.com/ws");
+    ws = new WebSocket("wss://messpaint.herokuapp.com");
     ws.onopen = () =>
     {
         wsSuccess();

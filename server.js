@@ -11,6 +11,7 @@ const PROMPTS = require("./server/prompts");
 const port = process.env.PORT || 4000;
 const wsport = process.env.WSPORT || 5000;
 const ws = require("ws");
+const expressWs = require("express-ws")(app);
 const sendFileOptions = { root: "." };
 
 // Adding directories for script routing
@@ -130,15 +131,9 @@ app.get("/api/joinRoom", (req, res) => // Just checks the existence of a room wi
 
 // WebSockets
 
-expressServer.on('upgrade', (request, socket, head) => {
-    wsserver.handleUpgrade(request, socket, head, socket => {
-        wsserver.emit('connection', socket, request);
-    });
-});
-
 function wsSetup()
 {
-    wsserver = new ws.Server({ port: wsport, clientTracking: true, path: "/ws" });
+    /*wsserver = new ws.Server({ port: wsport, clientTracking: true, path: "/ws" });
     console.log("WSServer is up, port = " + wsport + "!");
 
     wsserver.on("connection", (wsuser) =>
@@ -156,8 +151,25 @@ function wsSetup()
 
             wsRoomSend(room, "ROOMPLAYERSUPDATE", makeRoomPlayersData(room));
         });
-    });
+    });*/
 }
+
+app.ws('/', (wsuser, req) =>
+{
+    wsuser.on("message", (data) => { wsHandling(wsuser, data.toString()); })
+
+    wsuser.on("close", () =>
+    {
+        // Prepare to message everyone in the room to update their player lists
+        const room = ROOMS.findRoomOfPlayer(wsuser);
+        if (!room) return;
+
+        // Remove the disconnected player from their room
+        ROOMS.disconnect( { ws: wsuser } );
+
+        wsRoomSend(room, "ROOMPLAYERSUPDATE", makeRoomPlayersData(room));
+    });
+});
 
 function wsHandling(wsuser, msg)
 {
