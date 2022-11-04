@@ -117,5 +117,5 @@ function showNextPainting()
 
 el("demoBack").onclick = () =>
 {
-    window.location.href = "/game";
+    window.location.href = "/";
 }
