@@ -1,5 +1,22 @@
-const ws = new WebSocket("ws://localhost:5000");
+let ws = new WebSocket("ws://localhost:5000");
 ws.onopen = () =>
+{
+    wsSuccess();
+};
+ws.onerror = (e) =>
+{
+    ws = new WebSocket("ws://lovely-hoodie-crow.cyclic.app:5000");
+    ws.onopen = () =>
+    {
+        wsSuccess();
+    };
+    ws.onerror = (e) =>
+    {
+        show(el("websocketFailed"));
+    }
+}
+
+function wsSuccess()
 {
     hide(el("websocketWaitingForConnection"));
     show(el("roomConnecting"));
@@ -11,10 +28,6 @@ ws.onopen = () =>
     el("roomCode").innerHTML = roomCode;
 
     ws.send("CONNECTTOROOM|" + roomCode + "|" + playerName);
-};
-ws.onerror = (e) =>
-{
-    show(el("websocketFailed"));
 }
 
 ws.onmessage = (event) =>
