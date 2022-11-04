@@ -5,6 +5,8 @@ ws.onopen = () =>
 };
 ws.onerror = (e) =>
 {
+    console.log("local failed");
+    console.log(e);
     ws = new WebSocket("wss://messpaint.herokuapp.com");
     ws.onopen = () =>
     {
@@ -12,6 +14,8 @@ ws.onerror = (e) =>
     };
     ws.onerror = (e) =>
     {
+        console.log("heroku failed");
+        console.log(e);
         show(el("websocketFailed"));
     }
 }
