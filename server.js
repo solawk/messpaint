@@ -20,7 +20,7 @@ app.use("/js", express.static(__dirname + "/client"));
 let wsserver;
 
 // Launching
-app.listen(port, () =>
+const expressServer = app.listen(port, () =>
 {
     console.log("Server is up, port = " + port + "!");
     wsSetup();
@@ -133,7 +133,7 @@ app.get("/api/joinRoom", (req, res) => // Just checks the existence of a room wi
 
 function wsSetup()
 {
-    wsserver = new ws.Server({ port: wsport, clientTracking: true });
+    wsserver = new ws.Server({ server: expressServer, clientTracking: true });
     console.log("WSServer is up, port = " + wsport + "!");
 
     wsserver.on("connection", (wsuser) =>

@@ -1,4 +1,4 @@
-let ws = new WebSocket("ws://localhost:5000");
+let ws = new WebSocket("ws://localhost:4000");
 ws.onopen = () =>
 {
     wsSuccess();
