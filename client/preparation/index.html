@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Preparation</title>
+</head>
+<body style="text-align: center; margin-top: 200px">
+    <div id="cjaDiv">
+        <input type="text" id="nameEnterInput" placeholder="Ваше имя"><br>
+        <button id="createRoomButton">Создать комнату</button><br>
+        <button id="joinRoomButton">Присоединиться к комнате</button><br>
+        <button id="demoButton">Просмотреть сессию</button>
+    </div>
+    <div id="createRoomDiv" style="display: none;">
+        Количество игроков: <input type="range" id="createCountInput" min="3" max="12" value="3" step="1"><span id="createCountDisplay">3</span><br>
+        Длина предложения: <input type="range" id="createLengthInput" min="2" max="6" value="2" step="1"><span id="createLengthDisplay">2</span><br>
+        Количество рисунков для каждого игрока: <input type="range" id="createAmountInput" min="1" max="6" value="2" step="1"><span id="createAmountDisplay">2</span><br>
+        С текущим количеством игроков и длиной предложения оно может быть не больше: <span id="createMaxAmountDisplay">-</span><br>
+        <br>
+        Время на создание одного рисунка: <input type="range" id="createT2DInput" min="10" max="600" value="60" step="10"><span id="createT2DDisplay">60 с</span><br>
+        Время на просмотр одного рисунка (в демонстрации): <input type="range" id="createT2VInput" min="3" max="10" value="5" step="1"><span id="createT2VDisplay">5 с</span><br>
+        <button id="createRoomBackButton">< Назад</button> <button id="createRoomConfirmButton">Создать комнату ></button>
+    </div>
+    <div id="joinRoomDiv" style="display: none;">
+        Код комнаты: <input type="number" id="joinRoomCodeInput" min="1" value="1" step="1"><br>
+        <button id="joinRoomBackButton">< Назад</button> <button id="joinRoomConfirmButton">Подключиться к комнате ></button>
+        <span id="joinFailedSpan" style="display: none;">Такой комнаты не существует!</span>
+    </div>
+    <div id="demoDiv" style="display: none;">
+        Идентификатор сессии: <input type="text" id="demoIdInput"><br>
+        <button id="demoBackButton">< Назад</button> <button id="demoRequestButton">Найти сессию ></button>
+        <span id="demoFailedSpan" style="display: none;">Сессии с этим идентификатором не существует!</span>
+    </div>
+</body>
+<script src="js/util.js"></script>
+<script src="js/preparation/general.js"></script>
+<script src="js/preparation/requests.js"></script>
+<script src="js/preparation/createSettings.js"></script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gameplay</title>
+</head>
+<body style="user-select: none; text-align: center">
+    <div id="abovePaintDiv" style="margin-top: 4%">
+        <div id="websocketDiv">
+            <span id="websocketWaitingForConnection">Ожидание вебсокет-подключения...</span>
+            <span id="websocketFailed" style="display: none">Ошибка вебсокет-подключения, убедитесь в работе сервера</span>
+        </div>
+        <div id="roomDiv">
+            Код комнаты: <span id="roomCode"></span><br>
+            <span id="roomConnecting" style="display: none">Присоединение к комнате...</span>
+            <span id="roomFailNotFound" style="display: none">Комната не найдена!</span>
+            <span id="roomFailFull" style="display: none">Комната заполнена!</span>
+            <span id="roomFailHasStarted" style="display: none">Игра в комнате уже началась!</span>
+            <span id="roomPlayers" style="display: none">Игроки:</span><br>
+            <span id="roomWaitingForPlayers" style="display: none">Ожидание игроков...</span>
+        </div>
+        <div id="promptDiv" style="display: none">
+            <span id="promptReady"></span><br>
+            <span id="promptHint">Введите предложение:</span>
+            <table style="margin-left: auto; margin-right: auto">
+                <tr id="promptRow">
+                </tr>
+                <button id="promptSend">Подтвердить</button>
+            </table><br>
+            <span id="promptStartFailNotEnoughCombinations" style="display: none">Слишком мало сформированных комбинаций из-за вышедших игроков, начните игру заново!</span>
+        </div>
+    </div>
+    <div id="paintDiv" style="width: 800px; margin-left: auto; margin-right: auto; display: none">
+        <span id="paintPrompt"></span><br>
+        <span id="paintTimer"></span><br>
+        <div id="canvasWrapper" style="position: relative">
+            <canvas id="paintCanvas" width="800" height="600" style="border: 1px solid black; cursor: crosshair; touch-action: none;"></canvas>
+            <canvas id="cursorCanvas" width="800" height="600" style="position: absolute; pointer-events: none; border: 1px solid black; left: 0; top: 0; touch-action: none;"></canvas>
+        </div><br>
+        <table style="width: 100%"><tr>
+            <td style="width: 70%">
+                <table id="paintPalette" style="width: 100%">
+                </table>
+            </td>
+            <td style="width: 30%">
+                <input id="paintSize" type="range" min="1" step="0.25" max="7" value="4">
+            </td>
+        </tr></table><br>
+        <input type="checkbox" id="paintReadyCheckbox" style="width: 30px; height: 30px">&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 30px">Готов!</span>
+    </div>
+</body>
+<script src="js/util.js"></script>
+<script src="js/gameplay/prompt.js"></script>
+<script src="js/gameplay/timer.js"></script>
+<script src="js/gameplay/canvas.js"></script>
+<script src="js/gameplay/cursor.js"></script>
+<script src="js/gameplay/net.js"></script>
+</html>
