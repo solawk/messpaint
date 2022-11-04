@@ -173,6 +173,8 @@ app.ws('/', (wsuser, req) =>
 
 function wsHandling(wsuser, msg)
 {
+    console.log(msg);
+
     const params = msg.split("|");
     const signature = params[0];
 
