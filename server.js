@@ -19,7 +19,7 @@ app.use("/js", express.static(__dirname + "/client"));
 let wsserver;
 
 // Launching
-app.listen(port, () =>
+const expressServer = app.listen(port, () =>
 {
     console.log("Server is up, port = " + port + "!");
     wsSetup();
@@ -129,6 +129,12 @@ app.get("/api/joinRoom", (req, res) => // Just checks the existence of a room wi
 });
 
 // WebSockets
+
+expressServer.on('upgrade', (request, socket, head) => {
+    wsserver.handleUpgrade(req, socket, head, socket => {
+        wsserver.emit('connection', socket, req);
+    });
+});
 
 function wsSetup()
 {
