@@ -134,7 +134,6 @@ app.get("/api/joinRoom", (req, res) => // Just checks the existence of a room wi
 function wsSetup()
 {
     wsserver = new ws.Server({ server: expressServer, clientTracking: true });
-    console.log("WSServer is up, port = " + wsport + "!");
 
     wsserver.on("connection", (wsuser) =>
     {
@@ -367,5 +366,6 @@ function wsRoomSend(room, signature, msg)
 
 function wsSend(wsuser, signature, msg)
 {
+    console.log(wsuser + ": " + signature + "|" + msg);
     wsuser.send(signature + "|" + msg);
 }
