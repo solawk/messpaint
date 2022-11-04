@@ -131,8 +131,8 @@ app.get("/api/joinRoom", (req, res) => // Just checks the existence of a room wi
 // WebSockets
 
 expressServer.on('upgrade', (request, socket, head) => {
-    wsserver.handleUpgrade(req, socket, head, socket => {
-        wsserver.emit('connection', socket, req);
+    wsserver.handleUpgrade(request, socket, head, socket => {
+        wsserver.emit('connection', socket, request);
     });
 });
 
