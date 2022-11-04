@@ -10,7 +10,7 @@ const PROMPTS = require("./server/prompts");
 // Constants
 const port = process.env.PORT || 4000;
 const wsport = process.env.WSPORT || 5000;
-const { WebSocketServer } = require("ws");
+const ws = require("ws");
 const sendFileOptions = { root: "." };
 
 // Adding directories for script routing
@@ -132,7 +132,7 @@ app.get("/api/joinRoom", (req, res) => // Just checks the existence of a room wi
 
 function wsSetup()
 {
-    wsserver = new WebSocketServer({ port: wsport, clientTracking: true });
+    wsserver = new ws.Server({ port: wsport, clientTracking: true });
     console.log("WSServer is up, port = " + wsport + "!");
 
     wsserver.on("connection", (wsuser) =>
