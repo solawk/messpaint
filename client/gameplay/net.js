@@ -24,7 +24,7 @@ ws.onmessage = (event) =>
 
     const params = msg.split("|");
     const signature = params[0];
-    console.log(msg);
+    //console.log(msg);
     switch (signature)
     {
         case "ROOMCONNECTIONFAIL":
