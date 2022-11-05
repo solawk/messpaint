@@ -53,9 +53,9 @@ ws.onmessage = (event) =>
             break;
 
         case "ROOMPLAYERSUPDATE":
-            let playerNames = "Игроки:\n";
+            let playerNames = "<br>Игроки:<br>";
             for (let i = 1; i < params.length; i++)
-                playerNames += params[i] + "\n";
+                playerNames += params[i] + "<br>";
             el("roomPlayers").innerHTML = playerNames;
             el("promptReady").innerHTML = "Готовы " + promptReadyPlayers + "/" + (params.length - 1) + " игроков";
             break;
