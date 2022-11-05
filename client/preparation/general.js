@@ -29,6 +29,8 @@ el("createRoomBackButton").onclick = () =>
 
 el("createRoomConfirmButton").onclick = async () =>
 {
+    if (!evalMaxAmount()) return;
+
     const count = el("createCountInput").value;
     const length = el("createLengthInput").value;
     const amount = el("createAmountInput").value;

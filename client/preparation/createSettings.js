@@ -11,7 +11,7 @@ function fact(i)
     return factorials[i];
 }
 
-function evalMaxAmount()
+function evalMaxAmount() // Returns if maxAmount is ok
 {
     // amount = ((playerCount - 1)! / (playerCount - 1 - promptLength)!)
 
@@ -28,9 +28,11 @@ function evalMaxAmount()
     if (amount > maxAmount)
     {
         el("createMaxAmountDisplay").style.color = "red";
+        return false;
     }
     else
     {
-        el("createMaxAmountDisplay").style.color = "black";
+        el("createMaxAmountDisplay").style.color = "white";
+        return true;
     }
 }

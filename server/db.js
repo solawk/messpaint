@@ -60,21 +60,32 @@ async function saveSession(playerDataArray)
     }
 
     let id = 1;
+    let createdSession;
 
     // Saving to Mongo
-    await sessionModel.create(session, (err, createdSession) =>
+    try
     {
-        if (err)
-        {
-            console.log("Error adding a session: " + err);
-        }
-
+        createdSession = await sessionModel.create(session);
         id = createdSession._id.toString();
-    });
+    }
+    catch (e)
+    {
+        console.log("Error adding a session: " + e);
+    }
 
-    cache.push({ ...session, _id: id });
+    saveToCache({ ...session, _id: id });
 
     return id;
+}
+
+function saveToCache(session)
+{
+    cache.unshift(session);
+
+    if (cache.length > 10)
+    {
+        cache.pop();
+    }
 }
 
 async function loadSession(id)
@@ -84,12 +95,12 @@ async function loadSession(id)
         if (session._id === id) return session;
     }
 
-    console.log("id: " + id);
+    //console.log("id: " + id);
     try
     {
         const session = await sessionModel.findById(id);
 
-        cache.push(session);
+        saveToCache(session);
         return session;
     }
     catch (e)

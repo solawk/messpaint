@@ -101,9 +101,9 @@ ws.onmessage = (event) =>
                 input.id = "sentencePart" + (i-2).toString();
 
                 // DEV
-                const paramsurl = new URLSearchParams(window.location.search);
-                const playerName = paramsurl.get("name");
-                input.value = playerName + "--" + (i - 1).toString();
+                //const paramsurl = new URLSearchParams(window.location.search);
+                //const playerName = paramsurl.get("name");
+                //input.value = playerName + "--" + (i - 1).toString();
                 // DEV END
 
                 input.type = "text";

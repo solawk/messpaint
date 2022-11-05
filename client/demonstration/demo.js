@@ -63,7 +63,7 @@ async function demo()
         el("playerTable").appendChild(playerRow);
 
         const prompt = playerData.prompt.join(" ");
-        playerRow.innerHTML = playerData.name + ": " + prompt + "<br>";
+        playerRow.innerHTML = "Игрок <b>" + playerData.name + '</b> загадал <b>"' + prompt + '"</b><br>';
 
         paintingsPerPlayer = playerData.drawings.length;
 
@@ -73,12 +73,16 @@ async function demo()
             paintingDivs.push(div);
             playerRow.appendChild(div);
 
-            div.innerHTML += playerData.drawingPrompts[i] + "<br>";
+            div.innerHTML += 'Рисунок <b>"' + playerData.drawingPrompts[i] + '"</b><br>';
 
             const img = document.createElement("img");
             img.src = playerData.drawings[i];
+            img.style.border = "1px solid black";
+            //img.style.background = "white";
             div.appendChild(img);
         }
+
+        //playerRow.innerHTML += "<br>";
     }
 
     if (db === 0) // If demonstrating right after the game
@@ -106,7 +110,11 @@ function showNextPainting()
     {
         for (let playerRow of playerRows) hide(playerRow); // Hide all rows
         show(playerRows[Math.floor(nextPaintingIndex / paintingsPerPlayer)]); // Show the current player's row
+
+        console.log("showing row");
     }
+
+    console.log("index: " + nextPaintingIndex);
 
     for (let paintingDiv of paintingDivs) hide(paintingDiv); // Hide all divs
     show(paintingDivs[nextPaintingIndex]); // Show the current painting
@@ -115,7 +123,7 @@ function showNextPainting()
     setTimeout(() => { showNextPainting(); }, timer * 1000);
 }
 
-el("demoBack").onclick = () =>
+el("demoId").onclick = () =>
 {
-    window.location.href = "/";
+    navigator.clipboard.writeText(el("demoId").innerHTML);
 }

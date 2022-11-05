@@ -40,14 +40,14 @@ function testStart()
 
 app.get("/", (req, res) =>
 {
-    console.log("PREPARATION");
+    //console.log("PREPARATION");
 
     res.sendFile("/client/preparation/index.html", sendFileOptions);
 });
 
 app.get("/room", (req, res) =>
 {
-    console.log("GAMEPLAY");
+    //console.log("GAMEPLAY");
 
     const roomCode = req.query.code;
     const playerName = req.query.name;
@@ -78,9 +78,9 @@ app.get("/room", (req, res) =>
 
 app.get("/demonstration", (req, res) =>
 {
-    console.log("DEMONSTRATION");
-    console.log("id = " + req.query.id);
-    console.log("db = " + req.query.db);
+    //console.log("DEMONSTRATION");
+    //console.log("id = " + req.query.id);
+    //console.log("db = " + req.query.db);
     res.sendFile("/client/demonstration/index.html", sendFileOptions);
 });
 
@@ -114,7 +114,7 @@ app.get("/api/createRoom", (req, res) =>
     const t2d = parseInt(req.query.d);
     const t2v = parseInt(req.query.v);
 
-    console.log("Creating room: count " + count + ", length " + length + ", amount " + amount + ", t2d " + t2d + ", t2v " + t2v);
+    //console.log("Creating room: count " + count + ", length " + length + ", amount " + amount + ", t2d " + t2d + ", t2v " + t2v);
     const room = ROOMS.createRoom({ playerCount: count, promptLength: length, drawingsCount: amount, drawingTimer: t2d, demonstrationTimer: t2v });
 
     res.send({ code: room.code });
@@ -153,26 +153,9 @@ function wsSetup()
     });
 }
 
-/*app.ws('/', (wsuser, req) =>
-{
-    wsuser.on("message", (data) => { wsHandling(wsuser, data.toString()); })
-
-    wsuser.on("close", () =>
-    {
-        // Prepare to message everyone in the room to update their player lists
-        const room = ROOMS.findRoomOfPlayer(wsuser);
-        if (!room) return;
-
-        // Remove the disconnected player from their room
-        ROOMS.disconnect( { ws: wsuser } );
-
-        wsRoomSend(room, "ROOMPLAYERSUPDATE", makeRoomPlayersData(room));
-    });
-});*/
-
 function wsHandling(wsuser, msg)
 {
-    console.log(msg);
+    //console.log(msg);
 
     const params = msg.split("|");
     const signature = params[0];

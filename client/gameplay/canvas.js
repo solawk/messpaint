@@ -44,8 +44,11 @@ pCtx.canvas.onpointermove = (e) =>
 
 function clearCanvas()
 {
-    pCtx.clearRect(0, 0, pCtx.canvas.width, pCtx.canvas.height);
+    pCtx.fillStyle = "white";
+    pCtx.fillRect(0, 0, pCtx.canvas.width, pCtx.canvas.height);
 }
+
+clearCanvas();
 
 function saveState()
 {
