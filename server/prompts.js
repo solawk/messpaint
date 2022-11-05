@@ -61,7 +61,7 @@ function generatePromptsForRoom(room)
     }
 
     combineNextPart({ parts: [], indices: [] });
-    console.log("Combination count: " + combinations.length);
+    //console.log("Combination count: " + combinations.length);
 
     // 3. Shuffle
     combinations.sort((a, b) => { return Math.random() - 0.5; });

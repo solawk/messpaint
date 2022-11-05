@@ -127,6 +127,7 @@ ws.onmessage = (event) =>
 
         case "PAINTSTART":
             hide(el("promptDiv"));
+            hide(el("abovePaintDiv"));
             show(el("paintDiv"));
             el("paintPrompt").innerHTML = "Нарисуйте: " + params[1];
             setupTimer(params[2]);

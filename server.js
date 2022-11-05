@@ -193,7 +193,7 @@ function wsHandling(wsuser, msg)
             // If starting the room
             if (connectionResult === 1)
             {
-                console.log("STARTING");
+                //console.log("STARTING");
                 room.hasStarted = true;
 
                 const playerCount = room.playerCount;
@@ -240,14 +240,14 @@ function wsHandling(wsuser, msg)
                 break;
             }
 
-            console.log("Received ready status " + params[1]);
+            //console.log("Received ready status " + params[1]);
             ROOMS.setReadyStatus(room, ROOMS.findIndexOfPlayer(wsuser, room), params[1] === "1");
             const allPlayersAreReady = ROOMS.getAllReady(room);
             if (allPlayersAreReady)
             {
                 forceSend(room);
                 startPainting(room);
-                console.log("All players are ready!");
+                //console.log("All players are ready!");
             }
 
             break;
@@ -349,6 +349,6 @@ function wsRoomSend(room, signature, msg)
 
 function wsSend(wsuser, signature, msg)
 {
-    console.log(signature + "|" + msg);
+    //console.log(signature + "|" + msg);
     wsuser.send(signature + "|" + msg);
 }
