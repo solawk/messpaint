@@ -103,6 +103,14 @@ body
     padding: 10px;
     border-radius: 5px;
     font-family: 'Ubuntu';
+
+    background-color: white;
+    transition: 0.3s;
+}
+
+.marginInputText:hover
+{
+    background-color: #d0d0d0;
 }
 
 .marginButton
@@ -111,6 +119,14 @@ body
     padding: 15px 30px;
     border-radius: 10px;
     font-family: 'Ubuntu';
+
+    background-color: white;
+    transition: 0.3s;
+}
+
+.marginButton:hover
+{
+    background-color: #d0d0d0;
 }
 
 #demoId

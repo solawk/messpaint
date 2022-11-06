@@ -99,6 +99,7 @@ ws.onmessage = (event) =>
                 td.innerHTML += ":<br>";
                 const input = document.createElement("input");
                 input.id = "sentencePart" + (i-2).toString();
+                input.className = "marginInputText";
 
                 // DEV
                 //const paramsurl = new URLSearchParams(window.location.search);
