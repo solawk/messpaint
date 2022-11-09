@@ -74,6 +74,7 @@ function sendPainting()
     const paintingData = pCtx.canvas.toDataURL("image/png", 1.0);
     wsSend("SENDPAINTING", paintingData);
     clearCanvas();
+    previousImageData = [];
 }
 
 // Palette and tools
