@@ -65,7 +65,7 @@ el("paintReadyCheckbox").onchange = () =>
 
 function setReadyStatus(status)
 {
-    console.log("Setting ready to " + status);
+    //console.log("Setting ready to " + status);
     wsSend("READYSTATUS", status === true ? "1" : "-1");
 }
 

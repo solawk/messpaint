@@ -12,6 +12,11 @@ ws.onopen = () =>
     el("roomCode").innerHTML = roomCode;
 
     ws.send("CONNECTTOROOM|" + roomCode + "|" + playerName);
+
+    setInterval(() =>
+    {
+        ws.send("PING");
+    }, 10000);
 };
 ws.onerror = (e) =>
 {
